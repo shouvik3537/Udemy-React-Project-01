@@ -19,26 +19,9 @@ function App() {
         <section id="core-concepts">
           <h2>Core concepts</h2>
           <ul>
-            <CoreConcept
-              title={CORE_CONCEPTS[0].title}
-              description={CORE_CONCEPTS[0].description}
-              image={CORE_CONCEPTS[0].image}
-            />
-            <CoreConcept
-              title={CORE_CONCEPTS[1].title}
-              description={CORE_CONCEPTS[1].description}
-              image={CORE_CONCEPTS[1].image}
-            />
-            <CoreConcept
-              title={CORE_CONCEPTS[2].title}
-              description={CORE_CONCEPTS[2].description}
-              image={CORE_CONCEPTS[2].image}
-            />
-            <CoreConcept
-              title={CORE_CONCEPTS[3].title}
-              description={CORE_CONCEPTS[3].description}
-              image={CORE_CONCEPTS[3].image}
-            />
+            {CORE_CONCEPTS.map((conceptItem) => (
+              <CoreConcept {...conceptItem} />
+            ))}
           </ul>
         </section>
 
@@ -46,10 +29,15 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButtons onSelect={() => handleClick('components')}>Components</TabButtons>
-            <TabButtons onSelect={() => handleClick('jsx')}>JSX</TabButtons>
-            <TabButtons onSelect={() => handleClick('props')}>Props</TabButtons>
-            <TabButtons onSelect={() => handleClick('state')}>State</TabButtons>
+            <TabButtons 
+            isSelected = {selectedTopic === 'componets'}
+            onSelect={() => handleClick('components')}>Components</TabButtons>
+            <TabButtons isSelected = {selectedTopic === 'jsx'}
+             onSelect={() => handleClick('jsx')}>JSX</TabButtons>
+            <TabButtons isSelected = {selectedTopic === 'props'}
+              onSelect={() => handleClick('props')}>Props</TabButtons>
+            <TabButtons isSelected = {selectedTopic === 'state'}
+             onSelect={() => handleClick('state')}>State</TabButtons>
           </menu>
           <div id="tab-content">
             <h3>{EXAMPLES[selectedTopic].title}</h3>
